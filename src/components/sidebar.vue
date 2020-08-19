@@ -17,7 +17,7 @@
           <a href="#">Add Place</a>
         </li>
         <li class="other_links">
-          <a href="#">Events</a>
+          <vue_link href="/configure">Configure</vue_link>
         </li>
         <li class="other_links">
           <a href="#">About</a>
@@ -35,8 +35,13 @@
 
 
 <script>
+import vue_link from "./vue_link.vue"
+
 export default {
   name: "Sidebar",
+  components: {
+    vue_link,
+  },
 
   methods: {}
 };

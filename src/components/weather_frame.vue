@@ -4,7 +4,7 @@
       <button
         class="close_btn"
         style="height: 25px;"
-        id="close_button"
+        :id="'close_button_' + weather_obj['location']"
         v-on:click="close_bar($event)"
       >❌</button>
     </div>
@@ -61,6 +61,10 @@
         </div>
         <div v-if="weather_obj['wind_direction']" style="text-align: right;">
           <h5>{{ weather_obj['wind_direction'] }}</h5>
+        </div>
+
+        <div style="grid-column: span 2; padding-top: 0.5em;">
+          <p style="font-size:small;">Time last updated: {{ weather_obj['last_update_time']}}</p>
         </div>
       </div>
     </div>

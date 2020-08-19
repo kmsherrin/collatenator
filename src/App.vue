@@ -5,9 +5,9 @@
     <div class="app_body app_thin" id="app_main">
       <div class="dashboard_grid">
         <weather_frame state="tas" place="hobart" style="grid-row: span 2;" class="span_2" />
-        <reddit_frame subreddit="python" style="grid-row: span 3;" class="span_2" />
-        <reddit_frame subreddit="node" style="grid-row: span 3;" class="span_2" />
-        <reddit_frame subreddit="programmerhumor" style="grid-row: span 3;" class="span_2" />
+        <reddit_frame subreddit="python" style="grid-row: span 3;" class="span_3" />
+        <reddit_frame subreddit="node" style="grid-row: span 3;" class="span_3" />
+        <reddit_frame subreddit="programmerhumor" style="grid-row: span 3;" class="span_3" />
         <reddit_frame subreddit="hardware" style="grid-row: span 3;" class="span_2" />
         <abc_frame locale="hobart" style="grid-row: span 3;" class="span_2" />
         <weather_frame state="tas" place="penguin" style="grid-row: span 2;" class="span_2" />
@@ -15,9 +15,7 @@
         <abc_frame locale="tas" style="grid-row: span 3;" class="span_2" />
         <abc_frame locale="world" style="grid-row: span 3;" class="span_2" />
         <abc_frame locale="politics" style="grid-row: span 3;" class="span_2" />
-
       </div>
-      <div style="margin-bottom: 400px;"></div>
     </div>
   </div>
 </template>
@@ -42,9 +40,13 @@ export default {
 </script>
 
 <style>
+@import url("./styles/base_styles.css");
+
 body {
+  margin: 0;
   background-color: #fafafa;
 }
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -58,7 +60,7 @@ body {
 
 .app_body {
   margin-top: 40px;
-  padding: 1rem;
+  padding: 0.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,10 +72,10 @@ body {
 }
 
 .dashboard_grid {
-  max-width: 95%;
+  max-width: 98%;
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(175px, 0.25fr));
+  grid-template-columns: repeat(auto-fit, minmax(185px, 0.25fr));
   grid-template-rows: repeat(auto-fill, minmax(300px, 300px));
 }
 
@@ -84,19 +86,49 @@ body {
   grid-column: span 2;
 }
 .span_1 {
-  grid-column: span 2;
+  grid-column: span 1;
 }
 
 @media (min-width: 1600px) {
   .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 0.3fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 0.3fr));
+  }
+}
+
+@media (min-width: 1800px) {
+  .dashboard_grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 0.3fr));
+  }
+}
+@media (min-width: 2000px) {
+  .dashboard_grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 0.2fr));
   }
 }
 
 @media (max-width: 500px) {
-  .dashboard_grid {
-    grid-template-columns: 1fr;
+  .app_body {
+    width: 100vw;
+    overflow-y: hidden;
+    
   }
+  .dashboard_grid {
+    overflow-y: hidden;
+
+    overflow-x: scroll;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(20px);
+    scroll-snap-type: x mandatory;
+
+    display: flex;
+  }
+
+  .neu_border {
+    scroll-snap-align: start;
+    min-width: 99%;
+    height: 92vh;
+  }
+
 }
 
 @media (max-width: 800px) {
@@ -105,18 +137,18 @@ body {
   }
 
   .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(330px, 0.3fr));
+    grid-template-columns: repeat(auto-fill, minmax(390px, 0.3fr));
     padding-right: 1rem;
   }
 
   .span_3 {
-    grid-column: span 2;
+    grid-column: span 1;
   }
   .span_2 {
-    grid-column: span 2;
+    grid-column: span 1;
   }
   .span_1 {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 

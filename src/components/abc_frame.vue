@@ -1,7 +1,7 @@
 <template>
-  <div class="centered neu_border" id="out">
+  <div class="neu_border" id="out">
       <div style="display:flex; justify-content: flex-end; padding-right: 2rem; padding-top:0.5rem;">
-      <button class="close_btn" style="height: 25px;" :id="'close_button_' + subreddit" v-on:click="close_bar($event)">❌</button>
+      <button class="close_btn" style="height: 25px;" :id="'close_button_' + locale" v-on:click="close_bar($event)">❌</button>
     </div>
     <div>
       <h3 class="header" style="width: 100%;">ABC News {{ locale_fmt }}</h3>
@@ -64,44 +64,7 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  padding: 1rem;
-}
 
-.neu_border {
-  padding: 0 1rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 50px;
-  background: #fafafa;
-  box-shadow: 20px 20px 60px #d5d5d5, -20px -20px 60px #ffffff;
-}
+@import url('../styles/frames.css');
 
-.card_scroll {
-  justify-content: center;
-  flex-direction: column;
-  height: 70vh;
-  width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 0.2rem;
-}
-
-*::-webkit-scrollbar {
-  width: 6px; /* width of the entire scrollbar */
-}
-*::-webkit-scrollbar-track {
-  background: rgb(206, 206, 206); /* color of the tracking area */
-  margin: 0 0.2rem 3rem 0;
-  border-radius: 20px;
-}
-*::-webkit-scrollbar-thumb {
-  background-color: grey; /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
-  border: 0px solid black; /* creates padding around scroll thumb */
-}
 </style>

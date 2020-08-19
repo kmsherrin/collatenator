@@ -1,8 +1,13 @@
 const express = require('express')
 const serveStatic = require('serve-static')
 const path = require('path')
+const history = require('connect-history-api-fallback')
 
 const app = express()
+
+require('./routes')(app)
+
+app.use(history())
 
 //here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, '/dist')))
