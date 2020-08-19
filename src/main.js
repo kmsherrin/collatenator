@@ -1,25 +1,27 @@
 import Vue from 'vue'
-import routes from './routes'
+import Router from 'vue-router'
 
-const vue_app = new Vue({
-  el: '#app',
-  data: {
-    currentRoute: window.location.pathname
+import Home from "./pages/Home.vue"
+import Configure from "./pages/Configure.vue"
+
+const routes = [
+  {
+    path: '/',
+    component: Home.default
   },
-  computed: {
-    ViewComponent () {
-      const matchingView = routes[this.currentRoute]
-      return matchingView
-        ? require('./pages/' + matchingView + '.vue').default
-        : require('./pages/404.vue')
-    }
-  },
-  
-  render(h) {
-    return h(this.ViewComponent)
+
+  {
+    path: '/configure',
+    component: Configure.default 
   }
+]
+
+const router = new Router({
+  routes // short for `routes: routes`
 })
 
-window.addEventListener('popstate', () => {
-  vue_app.currentRoute = window.location.pathname
-})
+new Vue({
+  el: '#app',
+  render: h => h(Home),
+  router,
+}).$mount('#app')
