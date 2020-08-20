@@ -3,25 +3,31 @@ import Router from 'vue-router'
 
 import Home from "./pages/Home.vue"
 import Configure from "./pages/Configure.vue"
+import App from "./App.vue"
+
+Vue.use(Router);
+
 
 const routes = [
   {
     path: '/',
-    component: Home.default
+    component: Home,
   },
 
   {
     path: '/configure',
-    component: Configure.default 
+    component: Configure,
   }
 ]
+
 
 const router = new Router({
   routes // short for `routes: routes`
 })
 
+
 new Vue({
-  el: '#app',
-  render: h => h(Home),
   router,
+  template: '<App/>',
+  components: { App },
 }).$mount('#app')

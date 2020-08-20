@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a :href="fulllink" target="_blank" rel="noopener noreferrer">
-      <h2 class="title_header">⚬ {{ title }}</h2>
+      <h2 class="title_header">{{ title }}</h2>
     </a>
 
     <div v-if="textpost" class="preview_text" :id="'md_insert'+fulllink">
@@ -74,5 +74,11 @@ export default {
 
 <style scoped>
 @import url('../styles/cards.css');
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 </style>

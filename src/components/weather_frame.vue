@@ -24,7 +24,10 @@
         <div class="icon">
           <img src="../assets/fog.png" style="height: auto; width: 100%; max-width: 180px;" />
         </div>
-        <div class="temp" style="display: flex; align-items: center; justify-content: flex-end;">
+        <div
+          class="temp"
+          style="display: flex; align-items: center; justify-content: flex-end; font-family: 'Montserrat', sans-serif; font-weight: 500;"
+        >
           <h1 style="font-size: 80px;">{{ weather_obj['air_temperature']['data'] }}</h1>
           <p
             style="font-size: 2rem; margin-bottom: 2rem;"
@@ -108,6 +111,8 @@ export default {
 
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .weather_grid {
   display: grid;
   gap: 2.5rem;
@@ -146,14 +151,19 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 50px;
+  border-radius: 30px;
   background: #fafafa;
   box-shadow: 20px 20px 60px #d5d5d5, -20px -20px 60px #ffffff;
 }
 
 h5 {
-  font: "Hind", sans-serif;
+  font-family: "Hind", sans-serif;
   font-size: 22px;
+  font-weight: 500;
+}
+
+p {
+  font-family: "Hind", sans-serif;
 }
 
 h1,
@@ -166,5 +176,4 @@ p {
   margin: 0;
   padding: 0;
 }
-@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 </style>
