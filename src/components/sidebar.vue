@@ -143,9 +143,6 @@ body {
 }
 
 @media (min-width: 800px) {
-  #wrapper {
-    padding-left: 250px;
-  }
 
   #wrapper.toggled {
     padding-left: 0;

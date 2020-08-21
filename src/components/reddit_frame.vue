@@ -14,7 +14,8 @@
           :score="post.score"
           :url="post.url"
           :selftext="post.self_text"
-        />
+        >{{ post.self_text }}
+        </reddit_card>
       </div>
     </div>
   </div>
@@ -22,9 +23,10 @@
 
 <script>
 import reddit_card from "./reddit_card.vue";
+const md = require("markdown").markdown;
 
-const api_url = "https://desolate-everglades-50364.herokuapp.com/reddit/";
-//const api_url = "http://localhost:3000/reddit/";
+//const api_url = "https://desolate-everglades-50364.herokuapp.com/reddit/";
+const api_url = "http://localhost:3000/reddit/";
 
 export default {
   name: "reddit_frame",
@@ -51,8 +53,12 @@ export default {
       .then(response => response.json())
       .then(response => {
         this.posts = response;
-        console.log(this.posts);
-      });
+        let md_fmt = [];
+        this.posts['selftext'].forEach(function(element) {
+          md_fmt.push(md.toHTML(element));
+        });
+        this.posts['selftext'] = md_fmt;
+    });
   }
 };
 </script>

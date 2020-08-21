@@ -5,7 +5,7 @@
     </a>
 
     <div v-if="textpost" class="preview_text" :id="'md_insert'+fulllink">
-        <p>Hllo</p>
+        <slot></slot>
     </div>
 
     <div v-else>
@@ -34,8 +34,6 @@
 </template>
 
 <script>
-const md = require("markdown").markdown;
-
 export default {
   name: "reddit_card",
 
@@ -65,9 +63,10 @@ export default {
         return false;
       }
     },
+
   },
   mounted() {
-    document.getElementById("md_insert"+this.fulllink).innerHTML =  md.toHTML(this.selftext);
+    //document.getElementById("md_insert"+this.fulllink).innerHTML =  this.selftext;
   },
 };
 </script>
