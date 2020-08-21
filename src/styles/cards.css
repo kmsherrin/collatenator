@@ -1,0 +1,68 @@
+
+  a {
+      text-decoration: none;
+  }
+  .card {
+
+    background-color: rgb(241, 241, 241);
+    height: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    border: 0px rgb(177, 177, 177) solid;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+
+    scroll-snap-align: start;
+
+    padding: 1rem 0.5rem 1rem 1rem;
+  }
+  
+  
+  .title_header {
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .preview_text {
+    font-family: "Hind", sans-serif;
+    font-size: large;
+    line-height: 1.6;
+    text-align: left;
+    padding: 1rem;
+    white-space: pre-wrap;
+    font-size: 1.3rem;
+  }
+
+  .post_image {
+    max-width: 95%;
+  }
+
+.button_below {
+    border: 0.5px solid rgb(156, 156, 156);
+    border-radius: 10px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    height: 20px;
+    padding: 0.3rem;
+  }
+  
+  .below_text {
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+
+hr {
+    border: 0;
+    height: 0;
+    width: 80%;
+    border-top: 1px solid rgba(0, 0, 0, 0.075);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@import url("https://fonts.googleapis.com/css3?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
