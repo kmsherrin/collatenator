@@ -1,19 +1,28 @@
+const fs = require('fs')
 const express = require('express')
+const rewrite = require('express-urlrewrite')
 const serveStatic = require('serve-static')
 const path = require('path')
-const history = require('connect-history-api-fallback')
+var history = require('connect-history-api-fallback');
 
-const app = express()
 
-app.use(history())
+const app = express();
 
-//here we are configuring dist to serve app files
-app.use('/', serveStatic(path.join(__dirname, 'dist')))
+app.use(history({
+    verbose: true,
+}));
 
-// this * route is to serve project on different page routes except root `/`
-// app.get(/.*/, function (req, res) {
-// 	res.sendFile(path.join(__dirname, '/dist/index.html'))
+app.use(express.static(path.join(__dirname, 'dist')));
+
+//this * route is to serve project on different page routes except root `/`
+// app.get('/.*/', function (req, res) {
+// 	res.render(path.join(__dirname, '/dist/index.html'))
 // })
+app.use(history({
+    index: '/dist/index.html'
+}));
+
+app.use(express.static(path.join(__dirname, 'dist')));
 
 const port = process.env.PORT || 8081
 app.listen(port)

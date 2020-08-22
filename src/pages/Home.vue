@@ -1,7 +1,7 @@
 <template>
   <div id="app2">
     <Main>
-      <div class="app_body" id="app_main">
+      <div class="app_body app_thin" id="app_main">
         <div class="dashboard_grid">
           <weather_frame state="tas" place="hobart" style="grid-row: span 2;" class="span_2" />
           <reddit_frame subreddit="python" style="grid-row: span 3;" class="span_3" />
@@ -62,6 +62,10 @@ body {
   justify-content: center;
   align-items: center;
   width: inherit;
+}
+
+.app_thin {
+    margin-left: 250px;
 }
 
 .dashboard_grid {
