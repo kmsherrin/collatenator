@@ -17,8 +17,8 @@
 </template>
 
 <script>
-const api_url = "http://localhost:3000/json/api-points/";
-//const api_url = "https://desolate-everglades-50364.herokuapp.com/json/api-points";
+//const api_url = "http://localhost:3000/json/api-points/";
+const api_url = "https://desolate-everglades-50364.herokuapp.com/json/api-points";
 
 import Main from "../layouts/Main.vue";
 import reddit_frame from "../components/reddit_frame.vue";
