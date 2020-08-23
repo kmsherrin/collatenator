@@ -8,22 +8,16 @@
           <a href=""><router-link to="/">Home</router-link></a>
         </li>
         <li class="other_links">
-          <a href="">Dashboard</a>
+          <a href=""><router-link to="/">Dashboard</router-link></a>
         </li>
         <li class="other_links">
           <a href="">Search</a>
         </li>
         <li class="other_links">
-          <a href="#">Add Place</a>
-        </li>
-        <li class="other_links">
           <a><router-link to="/configure">Configure</router-link></a>
         </li>
         <li class="other_links">
-          <a href="#">About</a>
-        </li>
-        <li class="other_links">
-          <a href="#">Services</a>
+          <a href=""><router-link to="/history">History</router-link></a>
         </li>
         <li class="other_links">
           <a href="#">Contact</a>
@@ -84,7 +78,7 @@ body {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  background: rgb(15, 15, 15);
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;

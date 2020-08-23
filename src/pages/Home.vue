@@ -1,19 +1,15 @@
 <template>
-  <div id="app2">
+  <div id="app">
     <Main>
       <div class="app_body app_thin" id="app_main">
-        <div class="dashboard_grid">
-          <weather_frame state="tas" place="hobart" style="grid-row: span 2;" class="span_2" />
-          <reddit_frame subreddit="python" style="grid-row: span 3;" class="span_3" />
-          <reddit_frame subreddit="node" style="grid-row: span 3;" class="span_3" />
-          <reddit_frame subreddit="programmerhumor" style="grid-row: span 3;" class="span_3" />
-          <reddit_frame subreddit="hardware" style="grid-row: span 3;" class="span_2" />
-          <abc_frame locale="hobart" style="grid-row: span 3;" class="span_2" />
-          <weather_frame state="tas" place="penguin" style="grid-row: span 2;" class="span_2" />
-          <weather_frame state="tas" place="burnie" style="grid-row: span 2;" class="span_2" />
-          <abc_frame locale="tas" style="grid-row: span 3;" class="span_2" />
-          <abc_frame locale="world" style="grid-row: span 3;" class="span_2" />
-          <abc_frame locale="politics" style="grid-row: span 3;" class="span_2" />
+        <div class="loader_div" v-if="loading">
+          <div class="loader">Loading...</div>
+          <h5 style="position: absolute; top: 10%; left: 35%;">Loading..</h5>
+        </div>
+        <div class="dashboard_grid" v-else>
+          <div class="respondant" v-for="item in dashboard_items" :key="item.dashboard_order">
+            <component :id="'item_'+item.dashboard_order" v-bind:is="item.component" :data="item" />
+          </div>
         </div>
       </div>
     </Main>
@@ -21,6 +17,9 @@
 </template>
 
 <script>
+const api_url = "http://localhost:3000/json/api-points/";
+//const api_url = "https://desolate-everglades-50364.herokuapp.com/json/api-points";
+
 import Main from "../layouts/Main.vue";
 import reddit_frame from "../components/reddit_frame.vue";
 import weather_frame from "../components/weather_frame.vue";
@@ -28,11 +27,30 @@ import abc_frame from "../components/abc_frame.vue";
 
 export default {
   name: "Home",
+  data: function() {
+    return {
+      loading: false,
+      dashboard_items: Array
+    };
+  },
   components: {
     Main,
     weather_frame,
     reddit_frame,
     abc_frame
+  },
+  mounted() {
+    this.get_data();
+  },
+  methods: {
+    get_data() {
+      fetch(`${api_url}`)
+        .then(response => response.json())
+        .then(response => {
+          this.dashboard_items = response;
+          console.log(this.dashboard_items);
+        });
+    }
   }
 };
 </script>
@@ -43,63 +61,28 @@ export default {
 body {
   margin: 0;
   background-color: #fafafa;
-
-}
-
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  overflow-x: hidden;
-  width: auto;
-}
-
-.app_body {
-  margin-top: 40px;
-  padding: 0.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: inherit;
-}
-
-.app_thin {
-    margin-left: 250px;
 }
 
 .dashboard_grid {
   max-width: 98%;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(185px, 0.25fr));
-  grid-template-rows: repeat(auto-fill, minmax(300px, 300px));
+  grid-template-rows: repeat(auto-fill, minmax(300px, 400px));
 }
 
-.span_3 {
-  grid-column: span 3;
-}
-.span_2 {
-  grid-column: span 2;
-}
-.span_1 {
-  grid-column: span 1;
-}
 
 @media (min-width: 1600px) {
-  .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 0.3fr));
+  .respondant {
+    max-width: 30%
   }
 }
 
-@media (min-width: 1800px) {
-  .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(190px, 0.3fr));
-  }
-}
 @media (min-width: 2000px) {
-  .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 0.2fr));
+  .respondant {
+    max-width: 25%;
   }
 }
 
@@ -116,7 +99,9 @@ body {
     scroll-snap-points-y: repeat(20px);
     scroll-snap-type: x mandatory;
 
-    display: flex;
+    flex-flow: row;
+
+    padding: 0;
   }
 
   .neu_border {
@@ -124,26 +109,17 @@ body {
     min-width: 99%;
     height: 92vh;
   }
+  .respondant {
+    min-width: 98%;
+  }
 }
 
 @media (max-width: 800px) {
   .app_body {
     margin-left: 0;
   }
-
-  .dashboard_grid {
-    grid-template-columns: repeat(auto-fill, minmax(390px, 0.3fr));
-    padding-right: 1rem;
-  }
-
-  .span_3 {
-    grid-column: span 1;
-  }
-  .span_2 {
-    grid-column: span 1;
-  }
-  .span_1 {
-    grid-column: span 1;
+  .respondant {
+    max-width: 46%;
   }
 }
 

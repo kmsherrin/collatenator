@@ -7,31 +7,78 @@
             <h2>Add New Dashboard Page</h2>
           </div>
 
-          <div class="modal-body" style="display: flex; justify-content: center;">
-            <h5>Type of page:</h5>
-            <select v-model="selected_type" id="page_type" @change="update_fields($event)">
-              <option disabled>Select type</option>
-              <option
-                v-for="type in types"
-                :key="type"
-                v-bind:value="{ display: type.display, id: type.id, field_text: type.input_field_text }"
-              >{{ type.display }}</option>
-            </select>
+          <div
+            class="modal-body"
+            style="display: flex; justify-content: center; align-items: center;"
+          >
+            <div class="div-space">
+              <h5>Type of page:</h5>
+            </div>
+            <div class="div-space">
+              <select v-model="selected_type" id="page_type">
+                <option disabled>Select type</option>
+                <option
+                  v-for="type in types"
+                  :key="type.id"
+                  v-bind:value="{ display: type.display, id: type.id, field_text: type.input_field_text }"
+                >{{ type.display }}</option>
+              </select>
+            </div>
           </div>
-          <div class="modal-body" style="display: flex; justify-content: center;">
-            <h5>{{ selected_type.field_text }}</h5>
-            <input v-model="first_input" type="text" />
+
+          <div
+            v-if="selected_type.id === 'abc'"
+            class="modal-body"
+            style="display: flex; justify-content: center; align-items:center;"
+          >
+            <div class="div-space">
+              <h5>{{ selected_type.field_text }}</h5>
+            </div>
+            <div class="div-space">
+              <select v-model="first_input">
+                <option
+                  v-for="place in abc_localities"
+                  :key="place.url"
+                  v-bind:value="place.url"
+                >{{ place.display }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div
+            v-else
+            class="modal-body"
+            style="display: flex; justify-content: center; align-items:center;"
+          >
+            <div class="div-space">
+              <h5>{{ selected_type.field_text }}</h5>
+            </div>
+            <div class="div-space">
+              <input v-model="first_input" type="text" />
+            </div>
           </div>
           <div
             v-if="selected_type.id === 'bom'"
             class="modal-body"
-            style="display: flex; justify-content: center;"
+            style="display: flex; justify-content: center; align-items: center;"
           >
-            <h5>Location:</h5>
-            <input v-model="second_input" type="text" />
+            <div class="div-space">
+              <h5>Location:</h5>
+            </div>
+            <div class="div-space">
+              <input v-model="second_input" type="text" />
+            </div>
           </div>
+
           <div class="modal-footer" style="display: flex; justify-content: center;">
-            <button class="modal-default-button" @click="this.save_fields">Save</button>
+            <div class="div-space">
+            <button class="modal-default-button ken-btn" @click="$emit('close')">Close</button>
+
+            </div>
+            <div class="div-space">
+            <button class="modal-default-button ken-btn" @click="this.save_fields">Save</button>
+
+            </div>
           </div>
         </div>
       </div>
@@ -41,8 +88,9 @@
 
 
 <script>
-const api_url = "http://localhost:3000/db/api-points";
-//const api_url = "https://desolate-everglades-50364.herokuapp.com/db/api-points";
+const nfetch = require("node-fetch");
+//const api_url = "http://localhost:3000/db/api-points";
+const api_url = "https://desolate-everglades-50364.herokuapp.com/db/api-points";
 
 export default {
   name: "add_api",
@@ -51,6 +99,7 @@ export default {
       first_input: "",
       second_input: "",
       selected_type: "Type",
+      order: 1,
       types: [
         {
           display: "Subreddit",
@@ -67,27 +116,72 @@ export default {
           id: "bom",
           input_field_text: "State:"
         }
-      ]
+      ],
+      abc_localities: [
+        {
+          display: "Hobart",
+          url: "hobart"
+        },
+        {
+          display: "Northern Tas",
+          url: "northtas"
+        },
+        {
+          display: "Tasmania",
+          url: "tas"
+        },
+        {
+          display: "Victoria",
+          url: "vic"
+        },
+        {
+          display: "Melbourne",
+          url: "melb"
+        },
+        {
+          display: "National",
+          url: "national"
+        }
+      ],
+      component_conv: {
+        subreddit: 'reddit_frame',
+        bom: 'weather_frame',
+        abc: 'abc_frame'
+      }
     };
   },
   methods: {
     save_fields() {
-      var api_point = new FormData();
+      //var api_form = new FormData();
+      var api_form = {};
+      //api_form.append("type", this.selected_type.id);
+      //api_form.append("input_1", this.first_input);
 
-      api_point.append("type", this.selected_type.id);
-      api_point.append("input_1", this.first_input);
+      api_form["type"] = this.selected_type.id;
+      api_form["input_1"] = this.first_input;
+      api_form["dashboard_order"] = this.order;
+      api_form["input_2"] = this.second_input;
 
-      if (this.selected_type.id === "bom") {
-        api_point.append("input_2", this.second_input);
-      }
-      console.log(api_point);
-      fetch(`${api_url}`, {
-        method: "post",
+      api_form['component'] = this.component_conv[this.selected_type.id];
+
+      // for (var key of api_form.entries()) {
+      //   console.log(key[0] + ', ' + key[1]);
+      // }
+      nfetch(`${api_url}`, {
+        method: "POST",
         headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
+          "content-type": "application/json"
         },
-        body: api_point
+        body: JSON.stringify(api_form)
+      })
+      .then(response => {
+        if (response.status == "200") {
+          this.$emit("close");
+          this.$emit("refresh_table");
+        } else {
+          console.log("TODO: didn't save")
+          alert("didn't save")
+        }
       });
     }
   },
@@ -97,6 +191,8 @@ export default {
 
 
 <style scoped>
+@import url("../../styles/base_styles.css");
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -115,7 +211,7 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 400px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -123,6 +219,7 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  display: flexbox;
 }
 
 .modal-header h3 {

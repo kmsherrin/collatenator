@@ -1,5 +1,5 @@
 <template>
-  <div class="neu_border" id="out">
+  <div class="neu_border span_1" id="out">
     <div style="display:flex; justify-content: flex-end; padding-right: 2rem;">
       <button
         class="close_btn"
@@ -74,6 +74,8 @@
   </div>
 </template>
 <script>
+const nfetch = require("node-fetch");
+
 //const api_url = "http://localhost:3000/weather/";
 const api_url = "https://desolate-everglades-50364.herokuapp.com/weather/";
 
@@ -82,10 +84,8 @@ export default {
   data: () => ({
     weather_obj: {}
   }),
-
   props: {
-    place: String,
-    state: String
+    data: Object
   },
   methods: {
     close_bar: function(event) {
@@ -96,7 +96,8 @@ export default {
   },
 
   mounted() {
-    fetch(`${api_url}${this.state}/${this.place}`)
+    console.log(this.data);
+    nfetch(`${api_url}${this.data["input_1"]}/${this.data["input_2"]}`)
       .then(response => response.json())
       .then(response => {
         this.weather_obj = response;
@@ -148,6 +149,7 @@ export default {
 }
 
 .neu_border {
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;

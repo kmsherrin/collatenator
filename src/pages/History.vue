@@ -3,16 +3,34 @@
     <Main>
       <div class="app_body app_thin" id="app_main">
         <div class="div-space">
-          <h1>Currently Added Pages</h1>
+          <h1>Saved Posts, Articles & Weather</h1>
         </div>
         <div class="div-space">
-          <button class="ken-btn" id="show-modal" @click="showModal = true">Add New Page</button>
-          <add_api v-if="showModal" @close="showModal = false">
-            <h3 slot="header">custom header</h3>
-          </add_api>
+            <h3>Select time range to search:</h3>
+        </div>
+        <div class="div-space">
+            <h5>From date:</h5>
+            <input type="date">
+        </div>
+        <div class="div-space">
+            <h5>To date:</h5>
+            <input type="date">
         </div>
         <div>
-          <draggable_table/>
+            <h5>
+                Item Type:
+            </h5>
+            <select name="type_box" id="type">
+                <option value="reddit">Reddit</option>
+                <option value="abc">ABC</option>
+            </select>
+        </div>
+        <div class="div-space">
+            <button class="ken-btn">Search</button>
+        </div>
+        
+        <div v-if="searched">
+                
         </div>
       </div>
     </Main>
@@ -22,22 +40,18 @@
 <script>
 
 import Main from "../layouts/Main.vue";
-import add_api from "../components/modals/add_api.vue";
-import draggable_table from "../components/draggable_table.vue";
 
 export default {
-  name: "Configure",
+  name: "History",
   props: {
   },
   components: {
     Main,
-    add_api,
-    draggable_table
+
   },
   data: function() {
     return {
-      showModal: false,
-      table_data: [],
+        searched: false,
     }
   },
   methods: {

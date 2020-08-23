@@ -1,7 +1,7 @@
 <template>
   <div class="neu_border" id="out">
       <div style="display:flex; justify-content: flex-end; padding-right: 2rem; padding-top:0.5rem;">
-      <button class="close_btn" style="height: 25px;" :id="'close_button_' + locale" v-on:click="close_bar($event)">❌</button>
+      <button class="close_btn" style="height: 25px;" :id="'close_button_' + data['input_1']" v-on:click="close_bar($event)">❌</button>
     </div>
     <div>
       <h3 class="header" style="width: 100%;">ABC News {{ locale_fmt }}</h3>
@@ -32,7 +32,7 @@ export default {
     posts: []
   }),
   props: {
-    locale: String
+    data: Object,
   },
   components: {
     abc_card
@@ -47,7 +47,7 @@ export default {
   },
 
   mounted() {
-    fetch(`${api_url}${this.locale}`)
+    fetch(`${api_url}${this.data['input_1']}`)
       .then(response => response.json())
       .then(response => {
         this.posts = response;
@@ -57,7 +57,7 @@ export default {
 
   computed: {
     locale_fmt() {
-      return this.locale.charAt(0).toUpperCase() + this.locale.slice(1);
+      return this.data['input_1'].charAt(0).toUpperCase() + this.data['input_1'].slice(1);
     }
   }
 };
