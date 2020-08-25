@@ -5,7 +5,7 @@
     :class="{ on_special_: product_data['Product']['IsOnSpecial'] == true }"
   >
   <div class="on_special" v-if="product_data['Product']['IsOnSpecial'] == true">
-      <h4 style="color: #fafafa; font-weight: 500; font-;">SAVE ${{ savings }}.{{ parse_cents(savings) }}</h4>
+      <h4 style="color: #fafafa; font-weight: 500; font-;">SAVE ${{ savings  }}</h4>
   </div>
     <div
       v-if="product_data['Product']['IsOnSpecial'] == true"
@@ -42,7 +42,7 @@
       </div>
       <div class="span_2">
         <a :href="fulllink" target="_blank" rel="noopener noreferrer">
-          <h2>{{ product_data["Product"]["Name"] }}</h2>
+          <h2>{{ product_data["Product"]["Name"] }}</h2><p>{{ product_data['Product']['PackageSize'] }}</p>
         </a>
       </div>
       <div class="grid_cell span_2">
@@ -106,8 +106,8 @@ export default {
     },
     savings() {
       return (
-        this.product_data["Product"]["WasPrice"] -
-        this.product_data["Product"]["Price"]
+        (this.product_data["Product"]["WasPrice"] -
+        this.product_data["Product"]["Price"]).toFixed(2)
       );
     },
   },
