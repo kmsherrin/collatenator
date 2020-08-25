@@ -15,7 +15,9 @@ p {
 }
 
 body {
-  background-color: #fafafa;
+  /*background-color: #fafafa;*/
+  background-color: #F5F8FB;
+  font-size: 18px;
 }
 
 #app {
@@ -23,12 +25,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: rgb(244, 247, 249);
   overflow-x: hidden;
   width: auto;
 }
 
 .app_body {
-  margin-top: 40px;
+
   padding: 0.2rem;
   display: flex;
   justify-content: center;
@@ -66,7 +69,7 @@ a {
 select {
   border: 1px solid rgb(206, 206, 206);
   border-radius: 0.2rem;
-  padding: 0.3rem 1rem 0.3rem 0rem;
+  padding: 0.3rem 1rem 0.3rem 0.5rem;
   font-family: "Hind", sans-serif;
   font-size: 1rem;
   cursor: pointer;

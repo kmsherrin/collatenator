@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a :href="fulllink" target="_blank" rel="noopener noreferrer">
-      <h2 class="title_header">⚬ {{ title }}</h2>
+      <h2 class="title_header"> {{ title }}</h2>
     </a>
     <div>
       <a :href="fulllink" target="_blank" rel="noopener noreferrer">
@@ -11,7 +11,6 @@
     <div>
       <p class="preview_text">{{ preview_text }}</p>
     </div>
-    <hr>
   </div>
 </template>
 

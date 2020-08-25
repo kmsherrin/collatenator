@@ -1,10 +1,10 @@
 <template>
-  <div class="card" :id="'reddit-card-id-'+fulllink" ref="card_w">
+  <div class="card" :id="'reddit-card-id-' + fulllink" ref="card_w">
     <a :href="fulllink" target="_blank" rel="noopener noreferrer">
       <h2 class="title_header">{{ title }}</h2>
     </a>
 
-    <div v-if="textpost" class="preview_text" :id="'md_insert'+fulllink">
+    <div v-if="textpost" class="preview_text" :id="'md_insert' + fulllink">
       <VueShowdown :markdown="selftext"></VueShowdown>
       <slot></slot>
     </div>
@@ -15,13 +15,29 @@
 
     <div v-else>
       <div v-if="imagepost">
-        <a :href="image_url" target="_blank" rel="noopener noreferrer">
+        <div v-if="gifvpost">
+          <a :href="image_url" target="_blank" rel="noopener noreferrer">
+            <video
+              preload="auto"
+              autoplay="autoplay"
+              loop="loop"
+              style="max-width: 90%; height: auto;"
+            >
+              <source :src="image_url" type="video/mp4" />
+            </video>
+          </a>
+        </div>
+        <div v-else>
+          <a :href="image_url" target="_blank" rel="noopener noreferrer">
             <img :src="image_url" class="post_image" />
           </a>
+        </div>
       </div>
 
       <div v-if="crosspost">
-        <a :href="image_url" target="_blank" rel="noopener noreferrer">{{ image_url }}</a>
+        <a :href="image_url" target="_blank" rel="noopener noreferrer">{{
+          image_url
+        }}</a>
       </div>
 
       <div v-if="vreddit_post">
@@ -31,7 +47,9 @@
       </div>
 
       <div v-if="!imagepost & !vreddit_post">
-        <a :href="image_url" target="_blank" rel="noopener noreferrer">{{ image_url }}</a>
+        <a :href="image_url" target="_blank" rel="noopener noreferrer">{{
+          image_url
+        }}</a>
       </div>
     </div>
 
@@ -51,14 +69,13 @@
 <script>
 export default {
   name: "reddit_card",
-  components: {
-  },
+  components: {},
   props: {
     title: String,
     image_url: String,
     url: String,
     score: Number,
-    selftext: String
+    selftext: String,
   },
   data: function() {
     return {
@@ -107,10 +124,10 @@ export default {
       }
     },
     imagepost() {
-      if (this.image_url.match(/(.png)|(.jpg)|(.jpeg)|(.gif)/g)){
-        return true
+      if (this.image_url.match(/(.png)|(.jpg)|(.jpeg)|(.gif)|(.gifv)/g)) {
+        return true;
       } else {
-        return false
+        return false;
       }
     },
     crosspost() {
@@ -120,10 +137,17 @@ export default {
         return false;
       }
     },
+    gifvpost() {
+      if (this.image_url.match(/(.gifv)/g)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   mounted() {
     //document.getElementById("md_insert"+this.fulllink).innerHTML =  this.selftext;
-  }
+  },
 };
 </script>
 

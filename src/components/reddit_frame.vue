@@ -28,8 +28,8 @@
 <script>
 import reddit_card from "./reddit_card.vue";
 
-const api_url = "https://desolate-everglades-50364.herokuapp.com/reddit/";
-//const api_url = "http://localhost:3000/reddit/";
+//const api_url = "https://desolate-everglades-50364.herokuapp.com/reddit/";
+const api_url = "http://localhost:3000/reddit/";
 
 export default {
   name: "reddit_frame",

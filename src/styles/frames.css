@@ -2,7 +2,7 @@
     font-family: "Montserrat", sans-serif;
     font-size: 1.7rem;
     font-weight: 600;
-    padding: 1rem;
+    padding-bottom: 1rem;
   }
   
   .neu_border {
@@ -12,7 +12,8 @@
     justify-content: center;
     border-radius: 30px;
     background: #fafafa;
-    box-shadow: 20px 20px 60px #d5d5d5, -20px -20px 60px #ffffff;
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: 10px 10px 10px #d5d5d5, -20px -20px 30px #fafafa;
     max-height: 90vh;
   }
   

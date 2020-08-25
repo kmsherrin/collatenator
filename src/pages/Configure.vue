@@ -8,10 +8,9 @@
         <div class="div-space">
           <button class="ken-btn" id="show-modal" @click="showModal = true">Add New Page</button>
           <add_api v-if="showModal" @close="showModal = false">
-            <h3 slot="header">custom header</h3>
           </add_api>
         </div>
-        <div>
+        <div style="overflow-x: auto; display:flex;">
           <draggable_table/>
         </div>
       </div>

@@ -28,7 +28,7 @@
     <div
       style="display:flex; justify-content:center; align-items: center; margin-top: 0px; margin-bottom: auto;"
     >
-      <h2 style="color: white; font-family: 'Montserrat', sans-serif; font-weight: 400; margin-top: 5px;">📚 Collatenator </h2>
+      <h2 style="color: #ededed; font-family: 'Montserrat', sans-serif; font-weight: 400; margin-top: 5px; font-size: 22px;">📚 Collatenator </h2>
     </div>
   </div>
 </template>

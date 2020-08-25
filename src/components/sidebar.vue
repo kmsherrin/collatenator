@@ -11,8 +11,12 @@
           <a href=""><router-link to="/">Dashboard</router-link></a>
         </li>
         <li class="other_links">
-          <a href="">Search</a>
+          <a href=""><router-link to="/groceries">Groceries</router-link></a>
         </li>
+        <li class="other_links">
+          <a href=""><router-link to="/groceries">Search</router-link></a>
+        </li>
+        <hr>
         <li class="other_links">
           <a><router-link to="/configure">Configure</router-link></a>
         </li>
@@ -20,7 +24,7 @@
           <a href=""><router-link to="/history">History</router-link></a>
         </li>
         <li class="other_links">
-          <a href="#">Contact</a>
+          <a href=""><router-link to="/contact">Contact</router-link></a>
         </li>
       </ul>
     </div>
