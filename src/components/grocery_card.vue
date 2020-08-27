@@ -4,37 +4,19 @@
     ref="card_w"
     :class="{ on_special_: product_data['Product']['IsOnSpecial'] == true }"
   >
-  <div class="on_special" v-if="product_data['Product']['IsOnSpecial'] == true">
-      <h4 style="color: #fafafa; font-weight: 500; font-;">SAVE ${{ savings  }}</h4>
-  </div>
-    <div
-      v-if="product_data['Product']['IsOnSpecial'] == true"
-      style="position:absolute; left: 30px; transform: rotate(-20deg);"
-    >
-     
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="icon icon-tabler icon-tabler-discount"
-        width="100"
-        height="100"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="#67c4ff"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-
-        <path stroke="none" d="M0 0h24v24H0z" />
-        <line x1="9" y1="15" x2="15" y2="9" />
-        <circle cx="9.5" cy="9.5" r=".5" fill="currentColor" />
-        <circle cx="14.5" cy="14.5" r=".5" fill="currentColor" />
-        <path
-          d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55 v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55 v-1"
-        />
-      </svg>
-    </div>
     <div class="product_grid">
+      <div class="span_2">
+        <div
+          class="on_special"
+          v-if="product_data['Product']['IsOnSpecial'] == true"
+        >
+          <h4 style="color: #fafafa; font-weight: 500; font-;">
+            SAVE ${{ savings }}
+          </h4>
+        </div>
+        <span></span>
+      </div>
+
       <div class="span_2">
         <a :href="fulllink" target="_blank" rel="noopener noreferrer">
           <img :src="product_data['Product']['MediumImageFile']" alt="" />
@@ -42,7 +24,8 @@
       </div>
       <div class="span_2">
         <a :href="fulllink" target="_blank" rel="noopener noreferrer">
-          <h2>{{ product_data["Product"]["Name"] }}</h2><p>{{ product_data['Product']['PackageSize'] }}</p>
+          <h2>{{ product_data["Product"]["Name"] }}</h2>
+          <p>{{ product_data["Product"]["PackageSize"] }}</p>
         </a>
       </div>
       <div class="grid_cell span_2">
@@ -56,11 +39,7 @@
         class="grid_cell span_2"
         v-if="product_data['Product']['IsOnSpecial'] == true"
       >
-        <p>
-          Was: ${{ product_data["Product"]["WasPrice"] }}.{{
-            parse_cents(product_data["Product"]["WasPrice"])
-          }}
-        </p>
+        <p>Was: ${{ product_data["Product"]["WasPrice"].toFixed(2) }}</p>
       </div>
     </div>
   </div>
@@ -69,7 +48,6 @@
 <script>
 //const api_url = "http://localhost:3000/json/groceries/";
 const api_url = "https://desolate-everglades-50364.herokuapp.com/json/groceries/";
-
 
 export default {
   name: "grocery_card",
@@ -106,9 +84,9 @@ export default {
     },
     savings() {
       return (
-        (this.product_data["Product"]["WasPrice"] -
-        this.product_data["Product"]["Price"]).toFixed(2)
-      );
+        this.product_data["Product"]["WasPrice"] -
+        this.product_data["Product"]["Price"]
+      ).toFixed(2);
     },
   },
   methods: {

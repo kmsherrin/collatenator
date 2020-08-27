@@ -62,6 +62,8 @@ a {
 .product_grid {
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-template-rows: 50px auto 180px 65px 20px;
+  place-items: center;
   font-size: 20px;
 }
 .grid_cell {
@@ -79,12 +81,13 @@ a {
   font-size: 40px;
 }
 .on_special {
+  width: 400px;
   margin-bottom: 1rem;
   padding: 0.2rem;
   background-color: 3px solid rgb(255, 238, 88);
   border-radius: 0.5rem;
   background: rgb(103,196,255);
-background: linear-gradient(170deg, rgba(103,196,255,1) 1%, rgba(14,131,205,1) 89%);
+  background: linear-gradient(170deg, rgba(103,196,255,1) 1%, rgba(14,131,205,1) 89%);
 }
 
 hr {

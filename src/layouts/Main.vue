@@ -39,7 +39,7 @@ body {
 }
 
 .app_body {
-  margin-top: 40px;
+  margin-top: 10px;
   padding: 0.2rem;
   display: flex;
   justify-content: center;
