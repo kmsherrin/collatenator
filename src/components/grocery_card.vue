@@ -47,32 +47,33 @@
 
 <script>
 //const api_url = "http://localhost:3000/json/groceries/";
-const api_url = "https://desolate-everglades-50364.herokuapp.com/json/groceries/";
+//const api_url = "https://desolate-everglades-50364.herokuapp.com/json/groceries/";
 
 export default {
   name: "grocery_card",
   components: {},
   props: {
-    item_id: String,
+    product_data: Object,
+
   },
   data: function() {
     return {
-      product_data: Object,
+        full_url: String,
     };
   },
   mounted() {
-    let full_url = api_url + this.item_id;
-    console.log(full_url);
-    fetch(full_url)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        this.product_data = response;
-      });
+    // let full_url = api_url + this.item_id;
+    // console.log(full_url);
+    // fetch(full_url)
+    //   .then((response) => response.json())
+    //   .then((response) => {
+    //     console.log(response);
+    //     //this.product_data = response;
+    //   });
   },
   computed: {
     fulllink() {
-      return `https://www.woolworths.com.au/shop/productdetails/${this.item_id}`;
+      return `https://www.woolworths.com.au/shop/productdetails/${this.product_data['Product']['Stockcode']}`;
     },
     dollars() {
       let price_string = "" + this.product_data["Product"]["Price"];
@@ -120,6 +121,7 @@ h2 {
   background-color: #ffffff;
   border: 1px solid #f5f8fb;
 }
+
 
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 </style>
