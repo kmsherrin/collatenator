@@ -47,8 +47,8 @@
 </template>
 
 <script>
-const api_url = "http://localhost:3000/db/groceries/save";
-//const api_url = "https://desolate-everglades-50364.herokuapp.com/db/api-points";
+//const api_url = "http://localhost:3000/db/groceries/save";
+const api_url = "https://desolate-everglades-50364.herokuapp.com/db/groceries/save";
 
 export default {
   name: "add_grocery_item",
