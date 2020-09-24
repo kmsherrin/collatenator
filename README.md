@@ -1,24 +1,20 @@
 # dashboard
 
-## Project setup
-```
-npm install
-```
+This was a small test project to get a starting point on the use of Vue. It was created with Vue 2, I would like to start another project to crack open the new Vue 3 and to get more into the use of state management (composition api). 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This project is the frontend to an express backend api and db that scrapes data for weather, news, groceries and reddit posts. This Vue frontend then displays the data in either a tiling dashboard (desktop) or tinder style tile swipe view (mobile). 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+List of features 
+- Easily extensible tile system (provide a keyword prop to pass to the backend api and it will display the accordingly)
+- Minimal dependencies 
+- Attempts to format and display most reddit posts
+- Displays news posts in readable format
+- All items are full linked to open at source
+- Functional weather display
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Not a very complete project, but got started with Vue nonetheless
+
+
+todo
+- add login system with page to add/remove desired tiles
