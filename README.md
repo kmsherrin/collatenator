@@ -4,10 +4,12 @@ This was a small test project to get a starting point on the use of Vue. It was 
 
 This project is the frontend to an express backend api and db that scrapes data for weather, news, groceries and reddit posts. This Vue frontend then displays the data in either a tiling dashboard (desktop) or tinder style tile swipe view (mobile). 
 
-![Collatenator on desktop](https://github.com/kmsherrin/readme_pictures/blob/main/collatenator_2560.png?raw=true)
+![Collatenator on desktop](https://github.com/kmsherrin/readme_pictures/blob/main/collatenator_2560.png?raw=true=750x)
+
 The Collatenator main dashboard UI on desktop with a horizontal resolution of 2560px 
 
-![Collatenator on mobile](https://github.com/kmsherrin/readme_pictures/blob/main/collatenator_mobile.png?raw=true)
+![Collatenator on mobile](https://github.com/kmsherrin/readme_pictures/blob/main/collatenator_mobile.png?raw=true)\
+
 When on mobile the cards in the desktop view squish down and are accessible swiping along the horizontal axis, cards will snap into view so that the user can "flick" through the cards.   
 
 #### List of features 
